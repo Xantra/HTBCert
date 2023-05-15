@@ -48,4 +48,13 @@ If version < v3 then it's not encrypted. (Other versions are 1 and 2c)
 It is common for websites to contain a robots.txt file, whose purpose is to instruct search engine web crawlers such as Googlebot which resources can and cannot be accessed for indexing. The robots.txt file can provide valuable information such as the location of private files and admin pages.
 
 ## Source Code
-It is worth checking the source code for any web pages we come across. We can hit `[CTRL + U] to bring up the source code window in a browser.
+It is worth checking the source code for any web pages we come across. We can hit `[CTRL + U]` to bring up the source code window in a browser.
+
+# Metasploit
+- Step 1 `msfconsole`
+- Step 2 `search exploit NAME`
+- Step 3 `use FULL_NAME` you get full name from the search.
+- Step 4 `show options`
+- Step 5 `set OPTION_NAME VALUE`, example `set RHOSTS 10.10.10.40` or `set LHOST tun0`
+- Step 6 `check`
+- Step 7 `run` or `exploit`
