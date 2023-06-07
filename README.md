@@ -61,3 +61,15 @@ It is worth checking the source code for any web pages we come across. We can hi
 
 ## Search for exploit
 - `searchsploit APPLICATION Version` searchsploit openssh 7.2
+
+# Netcat Reverse Shell Listener
+`nc -lnvp PORT`
+
+# Reverse Shell Commands
+https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Reverse%20Shell%20Cheatsheet.md
+
+# Bind Shell Commands
+https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Bind%20Shell%20Cheatsheet.md
+
+# Upgrade Shell
+Python example `python -c 'import pty; pty.spawn("/bin/bash")'`
