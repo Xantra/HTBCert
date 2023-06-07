@@ -58,3 +58,6 @@ It is worth checking the source code for any web pages we come across. We can hi
 - Step 5 `set OPTION_NAME VALUE`, example `set RHOSTS 10.10.10.40` or `set LHOST tun0`
 - Step 6 `check`
 - Step 7 `run` or `exploit`
+
+## Search for exploit
+- `searchsploit APPLICATION Version` searchsploit openssh 7.2
